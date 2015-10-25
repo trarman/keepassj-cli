@@ -1,5 +1,7 @@
 # keepassj-cli
 Command line interface for the keepassj library by pfn
+# Install
+Download latest release zip file, extract into empty folder.  Requires Java 7 to run.
 # Usage
 ```
 java -jar KeepassjCli.jar -f dbfile [options]
