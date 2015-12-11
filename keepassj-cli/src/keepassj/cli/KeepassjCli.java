@@ -17,6 +17,7 @@ import com.hanhuy.keepassj.PwGroup;
 import com.hanhuy.keepassj.PwObjectList;
 import com.hanhuy.keepassj.SearchParameters;
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import org.apache.commons.cli.CommandLine;
@@ -60,9 +61,9 @@ public class KeepassjCli {
             if (cmd.hasOption('p')) {
                 password = cmd.getOptionValue('p');
             } else {
-                System.out.println("Enter password for "+cmd.getOptionValue('f'));
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-                password = bufferedReader.readLine();
+                Console console = System.console();
+                char[] hiddenString = console.readPassword("Enter password for %s\n", cmd.getOptionValue('f'));
+                password = String.valueOf(hiddenString);
             }
             KeepassjCli instance = new KeepassjCli(cmd.getOptionValue('f'), password, cmd.getOptionValue('k'));
             System.out.println("Description:"+instance.db.getDescription());
